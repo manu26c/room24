@@ -12,96 +12,158 @@
   --blue:#000080;--blue2:#1084d0;--teal:#008080;
   --crt:#33ff33;--red:#cc0000;
 }
-html,body{width:100%;height:100%;overflow:hidden;font-family:'MS Sans Serif',Tahoma,Arial,sans-serif;font-size:11px;background:var(--teal);cursor:default;user-select:none;}
-#desktop{width:100%;height:calc(100% - 28px);position:relative;background:var(--teal);overflow:hidden;}
 
-/* ICONS */
-.di{position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px;cursor:pointer;}
-.di:hover .dl,.di.sel .dl{background:var(--blue);color:#fff;}
-.di-img{width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:26px;line-height:1;}
-.dl{font-size:11px;color:#fff;text-align:center;line-height:1.2;text-shadow:1px 1px 0 #000;padding:1px 2px;word-break:break-word;}
+/* ── BASE ── */
+html,body{width:100%;height:100%;font-family:'MS Sans Serif',Tahoma,Arial,sans-serif;font-size:11px;background:var(--teal);cursor:default;user-select:none;}
 
-/* WINDOWS */
-.win{position:absolute;background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);min-width:200px;display:none;flex-direction:column;box-shadow:2px 2px 0 var(--darker);}
-.win.open{display:flex;}
-.titlebar{background:linear-gradient(90deg,var(--blue),var(--blue2));color:#fff;padding:2px 3px;display:flex;align-items:center;justify-content:space-between;height:20px;cursor:move;flex-shrink:0;}
-.tb-l{display:flex;align-items:center;gap:3px;font-weight:bold;font-size:11px;overflow:hidden;white-space:nowrap;}
+/* ── SHARED WIN95 COMPONENTS ── */
+.win95-btn{background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);padding:4px 18px;font-size:11px;font-family:inherit;cursor:pointer;white-space:nowrap;display:inline-block;text-align:center;}
+.win95-btn:active{border-top:2px solid var(--dark);border-left:2px solid var(--dark);border-right:2px solid var(--light);border-bottom:2px solid var(--light);padding:5px 17px 3px 19px;}
+.win95-btn.def{outline:2px solid #000;outline-offset:-4px;}
+.titlebar{background:linear-gradient(90deg,var(--blue),var(--blue2));color:#fff;padding:3px 4px;display:flex;align-items:center;justify-content:space-between;height:22px;flex-shrink:0;}
+.tb-l{display:flex;align-items:center;gap:4px;font-weight:bold;font-size:11px;overflow:hidden;white-space:nowrap;}
 .tb-ic{width:14px;height:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;}
 .tb-btns{display:flex;gap:2px;flex-shrink:0;}
-.tbtn{width:16px;height:14px;background:var(--face);border-top:1px solid var(--light);border-left:1px solid var(--light);border-right:1px solid var(--dark);border-bottom:1px solid var(--dark);font-size:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#000;}
+.tbtn{width:18px;height:16px;background:var(--face);border-top:1px solid var(--light);border-left:1px solid var(--light);border-right:1px solid var(--dark);border-bottom:1px solid var(--dark);font-size:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#000;}
 .tbtn:active{border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);}
 .mbar{background:var(--face);border-bottom:1px solid var(--dark);display:flex;padding:1px 2px;flex-shrink:0;}
-.mi{padding:2px 6px;cursor:pointer;font-size:11px;}
-.mi:hover{background:var(--blue);color:#fff;}
-.wb{flex:1;padding:10px;overflow:auto;}
-.sbar{background:var(--face);border-top:1px solid var(--dark);display:flex;gap:3px;padding:2px 3px;flex-shrink:0;}
-.sp{border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);padding:1px 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-
-/* CRT */
+.mi{padding:3px 8px;cursor:pointer;font-size:11px;}
+.mi:hover,.mi:active{background:var(--blue);color:#fff;}
+.inset{background:#fff;border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);}
+.hr{border:none;border-top:1px solid var(--dark);border-bottom:1px solid var(--light);margin:6px 0;}
 .crt-box{background:#000;border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);position:relative;overflow:hidden;}
-.crt-box::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 2px,rgba(0,0,0,0.13) 2px,rgba(0,0,0,0.13) 4px);pointer-events:none;z-index:1;}
+.crt-box::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 2px,rgba(0,0,0,0.13) 2px,rgba(0,0,0,0.13) 4px);pointer-events:none;}
 .crt{font-family:'VT323',monospace;font-size:15px;line-height:1.5;color:var(--crt);padding:8px;white-space:pre-wrap;text-shadow:0 0 4px var(--crt);}
 .blink{animation:blink 1s step-end infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.fr{display:flex;align-items:center;gap:8px;padding:4px 8px;cursor:default;font-size:12px;}
+.fr:hover,.fr:active{background:var(--blue);color:#fff;}
+.fr:hover .dim,.fr:active .dim{color:#bbb!important;}
+.dim{color:#888;font-size:10px;margin-left:auto;}
+.sbar{background:var(--face);border-top:1px solid var(--dark);display:flex;gap:3px;padding:2px 4px;flex-shrink:0;}
+.sp{border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);padding:1px 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;}
 
-/* BUTTONS */
-.btn{background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);padding:3px 16px;font-size:11px;font-family:inherit;cursor:pointer;white-space:nowrap;display:inline-block;min-width:75px;text-align:center;}
-.btn:active{border-top:2px solid var(--dark);border-left:2px solid var(--dark);border-right:2px solid var(--light);border-bottom:2px solid var(--light);padding:4px 15px 2px 17px;}
-.btn-def{outline:2px solid #000;outline-offset:-4px;}
-.inset{background:#fff;border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);}
-.inset-dark{background:#111;border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);}
-.hr{border:none;border-top:1px solid var(--dark);border-bottom:1px solid var(--light);margin:6px 0;}
-
-/* FILE ROWS */
-.fr{display:flex;align-items:center;gap:6px;padding:2px 6px;cursor:default;}
-.fr:hover{background:var(--blue);color:#fff;}
-.fr:hover .dim{color:#bbb!important;}
-.dim{color:#888;font-size:10px;}
-
-/* PROGRESS */
-.pg-wrap{border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);height:18px;overflow:hidden;background:var(--face);}
-.pg-fill{height:100%;width:0;background:var(--blue);transition:width .15s linear;}
-
-/* TASKBAR */
-#taskbar{position:fixed;bottom:0;left:0;right:0;height:28px;background:var(--face);border-top:2px solid var(--light);display:flex;align-items:center;gap:3px;padding:0 3px;z-index:9999;}
-#start-btn{background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);padding:2px 8px;font-weight:bold;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px;height:22px;font-family:inherit;}
-#start-btn:active{border-top:2px solid var(--dark);border-left:2px solid var(--dark);border-right:2px solid var(--light);border-bottom:2px solid var(--light);}
-.tb-sep{width:0;border-left:1px solid var(--dark);border-right:1px solid var(--light);height:20px;margin:0 2px;}
-.tb-task{border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);padding:2px 8px;font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;height:20px;display:flex;align-items:center;gap:4px;}
-#clock-panel{margin-left:auto;border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);padding:2px 8px;font-size:11px;white-space:nowrap;height:20px;display:flex;align-items:center;}
-
-/* GLITCH ICON */
+/* ── GLITCH ── */
 #gico{animation:ico-g 4s infinite;image-rendering:pixelated;}
 @keyframes ico-g{0%,78%,100%{filter:none;transform:none;}79%{filter:hue-rotate(90deg) brightness(1.6);transform:translateX(-1px);}80%{filter:none;transform:translateX(1px);}81%{filter:brightness(2) hue-rotate(180deg);transform:translateX(-2px) scaleX(1.06);}82%{filter:none;transform:none;}83%{filter:brightness(.5);transform:translateY(1px);}84%{filter:none;transform:none;}}
-
-/* GLITCH WINDOW */
 .glitch{animation:wg 14s infinite;}
 @keyframes wg{0%,87%,100%{transform:none;filter:none;}88%{transform:translateX(-2px);filter:hue-rotate(90deg) brightness(1.2);}89%{transform:translateX(2px);filter:none;}90%{transform:none;}}
 
-/* NOTEPAD */
-.notepad{font-family:'Courier New',monospace;font-size:11px;line-height:1.8;padding:6px;background:#fff;border:none;outline:none;resize:none;width:100%;color:#000;}
+/* ══════════════════════════════════════════════════
+   DESKTOP LAYOUT (≥ 600px)
+══════════════════════════════════════════════════ */
+#desktop-view{display:none;}
 
-/* ERROR SCREEN */
-.err-screen{background:#000080;color:#fff;font-family:'Courier New',monospace;padding:20px;line-height:1.8;font-size:12px;}
-.err-title{background:#aaaaaa;color:#000080;padding:2px 8px;margin-bottom:12px;font-size:13px;font-weight:bold;}
+@media(min-width:600px){
+  body{overflow:hidden;}
+  #desktop-view{display:block;width:100%;height:calc(100% - 28px);position:relative;background:var(--teal);overflow:hidden;}
+  #mobile-view{display:none!important;}
+  #taskbar{display:flex;}
 
-/* START MENU */
+  /* desktop icons */
+  .di{position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px;cursor:pointer;}
+  .di:hover .dl,.di.sel .dl{background:var(--blue);color:#fff;}
+  .di-img{width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:26px;line-height:1;}
+  .dl{font-size:11px;color:#fff;text-align:center;line-height:1.2;text-shadow:1px 1px 0 #000;padding:1px 2px;word-break:break-word;}
+
+  /* windows */
+  .win{position:absolute;background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);min-width:220px;display:none;flex-direction:column;box-shadow:2px 2px 0 var(--darker);}
+  .win.open{display:flex;}
+  .titlebar{cursor:move;}
+  .wb{flex:1;padding:10px;overflow:auto;}
+
+  /* notepad */
+  .notepad{font-family:'Courier New',monospace;font-size:11px;line-height:1.8;padding:6px;background:#fff;border:none;outline:none;resize:none;width:100%;color:#000;}
+
+  /* error screen */
+  .err-screen{background:#000080;color:#fff;font-family:'Courier New',monospace;padding:20px;line-height:1.8;font-size:12px;}
+  .err-title{background:#aaa;color:#000080;padding:2px 8px;margin-bottom:12px;font-size:13px;font-weight:bold;}
+
+  /* hidden easter egg */
+  #hidden-pixel{position:absolute;width:3px;height:3px;bottom:36px;right:8px;background:var(--teal);cursor:pointer;z-index:100;}
+  #hidden-pixel:hover{background:#003300;}
+
+  /* start menu */
+  #smenu{display:none;position:fixed;bottom:28px;left:0;width:180px;z-index:99999;background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);box-shadow:2px 2px 0 var(--darker);}
+  .sm-strip{background:linear-gradient(180deg,#808080,#404040);width:20px;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;padding:6px 0;color:#c0c0c0;font-size:10px;font-weight:bold;letter-spacing:1px;flex-shrink:0;}
+
+  ::-webkit-scrollbar{width:16px;}
+  ::-webkit-scrollbar-track{background:var(--face);}
+  ::-webkit-scrollbar-thumb{background:var(--face);border-top:1px solid var(--light);border-left:1px solid var(--light);border-right:1px solid var(--dark);border-bottom:1px solid var(--dark);}
+  ::-webkit-scrollbar-button{background:var(--face);height:16px;border-top:1px solid var(--light);border-left:1px solid var(--light);border-right:1px solid var(--dark);border-bottom:1px solid var(--dark);}
+}
+
+/* ══════════════════════════════════════════════════
+   MOBILE LAYOUT (< 600px)
+══════════════════════════════════════════════════ */
+#mobile-view{display:flex;flex-direction:column;min-height:100vh;background:var(--teal);}
+
+/* mobile topbar — fake Win95 titlebar */
+.mob-topbar{background:linear-gradient(90deg,var(--blue),var(--blue2));color:#fff;padding:4px 8px;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:bold;flex-shrink:0;}
+.mob-topbar-ico{width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:13px;}
+
+/* mobile screen — feels like a CRT monitor body */
+.mob-screen{flex:1;background:var(--face);margin:8px;border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);display:flex;flex-direction:column;overflow:hidden;}
+
+/* panel navigation */
+.mob-panels{flex:1;overflow:hidden;position:relative;}
+.mob-panel{display:none;flex-direction:column;height:100%;overflow-y:auto;}
+.mob-panel.active{display:flex;}
+
+/* mobile menu bar */
+.mob-menubar{background:var(--face);border-bottom:2px solid var(--dark);display:flex;overflow-x:auto;flex-shrink:0;-webkit-overflow-scrolling:touch;}
+.mob-menubar::-webkit-scrollbar{display:none;}
+.mob-mi{padding:6px 12px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0;border-right:1px solid var(--dark);}
+.mob-mi.active-tab{background:var(--blue);color:#fff;}
+.mob-mi:active{background:var(--blue);color:#fff;}
+
+/* mobile content sections */
+.mob-section{background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);margin:8px;flex-shrink:0;}
+.mob-section-title{background:linear-gradient(90deg,var(--blue),var(--blue2));color:#fff;padding:3px 8px;font-size:11px;font-weight:bold;}
+.mob-section-body{padding:8px;font-size:12px;}
+
+/* mobile taskbar */
+.mob-taskbar{background:var(--face);border-top:2px solid var(--light);padding:3px 6px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.mob-start{background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);padding:3px 10px;font-size:12px;font-weight:bold;cursor:pointer;}
+.mob-clock{border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);padding:2px 8px;font-size:11px;}
+
+/* mobile file rows — bigger tap targets */
+.mob-fr{display:flex;align-items:center;gap:10px;padding:8px 10px;cursor:pointer;font-size:13px;border-bottom:1px solid rgba(128,128,128,0.3);}
+.mob-fr:active{background:var(--blue);color:#fff;}
+.mob-fr .mob-dim{color:#888;font-size:11px;margin-left:auto;}
+.mob-fr:active .mob-dim{color:#bbb;}
+
+/* mobile crt */
+.mob-crt-box{background:#000;border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);margin:8px;position:relative;overflow:hidden;min-height:110px;}
+.mob-crt-box::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 2px,rgba(0,0,0,0.13) 2px,rgba(0,0,0,0.13) 4px);pointer-events:none;}
+
+/* mobile err screen */
+.mob-err{background:#000080;color:#fff;font-family:'Courier New',monospace;padding:14px;line-height:1.8;font-size:12px;margin:8px;}
+.mob-err-title{background:#aaa;color:#000080;padding:2px 8px;margin-bottom:10px;font-size:12px;font-weight:bold;}
+
+/* mobile notepad */
+.mob-notepad{font-family:'Courier New',monospace;font-size:12px;line-height:1.9;padding:10px;background:#fff;color:#000;}
+
+@media(min-width:600px){
+  #mobile-view{display:none!important;}
+}
+
+/* ── SHARED TASKBAR ── */
+#taskbar{display:none;position:fixed;bottom:0;left:0;right:0;height:28px;background:var(--face);border-top:2px solid var(--light);align-items:center;gap:3px;padding:0 3px;z-index:9999;}
+#start-btn{background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);padding:2px 8px;font-weight:bold;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px;height:22px;font-family:inherit;border:none;}
+#start-btn:active{border-top:2px solid var(--dark);}
+.tb-sep{width:0;border-left:1px solid var(--dark);border-right:1px solid var(--light);height:20px;margin:0 2px;}
+.tb-task{border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);padding:2px 8px;font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;height:20px;display:flex;align-items:center;gap:4px;}
+#clock-panel{margin-left:auto;border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);padding:2px 8px;font-size:11px;white-space:nowrap;height:20px;display:flex;align-items:center;}
 #smenu{display:none;position:fixed;bottom:28px;left:0;width:180px;z-index:99999;background:var(--face);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark);box-shadow:2px 2px 0 var(--darker);}
-.sm-strip{background:linear-gradient(180deg,#808080,#404040);width:20px;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;padding:6px 0;color:#c0c0c0;font-size:10px;font-weight:bold;letter-spacing:1px;flex-shrink:0;}
-.sm-items{flex:1;}
-
-/* HIDDEN EASTER EGG */
-#hidden-pixel{position:absolute;width:3px;height:3px;bottom:36px;right:8px;background:var(--teal);cursor:pointer;z-index:100;}
-#hidden-pixel:hover{background:#003300;}
-
-::-webkit-scrollbar{width:16px;}
-::-webkit-scrollbar-track{background:var(--face);}
-::-webkit-scrollbar-thumb{background:var(--face);border-top:1px solid var(--light);border-left:1px solid var(--light);border-right:1px solid var(--dark);border-bottom:1px solid var(--dark);}
-::-webkit-scrollbar-button{background:var(--face);height:16px;border-top:1px solid var(--light);border-left:1px solid var(--light);border-right:1px solid var(--dark);border-bottom:1px solid var(--dark);}
 </style>
 </head>
 <body>
-<div id="desktop" onclick="desktopClick(event)">
+
+<!-- ══════════════════════════════════════════
+     DESKTOP VIEW (≥ 600px)
+══════════════════════════════════════════ -->
+<div id="desktop-view" onclick="desktopClick(event)">
 
   <!-- ICONS -->
   <div class="di" style="top:16px;left:16px" ondblclick="openWin('main-win')" onclick="selIcon(this)">
@@ -132,31 +194,21 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'MS Sans Serif',Tah
     </div>
     <div class="dl">ROOM_24.exe</div>
   </div>
-
   <div class="di" style="top:110px;left:16px" ondblclick="openWin('readme-win')" onclick="selIcon(this)">
-    <div class="di-img">📝</div>
-    <div class="dl">README.txt</div>
+    <div class="di-img">📝</div><div class="dl">README.txt</div>
   </div>
-
   <div class="di" style="top:204px;left:16px" ondblclick="openWin('archive-win')" onclick="selIcon(this)">
-    <div class="di-img">📁</div>
-    <div class="dl">Lab_Archive</div>
+    <div class="di-img">📁</div><div class="dl">Lab_Archive</div>
   </div>
-
   <div class="di" style="top:298px;left:16px" ondblclick="openWin('dl-win')" onclick="selIcon(this)">
-    <div class="di-img">💾</div>
-    <div class="dl">Download<br>Game</div>
+    <div class="di-img">💾</div><div class="dl">Download<br>Game</div>
   </div>
-
   <div class="di" style="top:16px;right:16px" ondblclick="openWin('quit-win')" onclick="selIcon(this)">
-    <div class="di-img">🗑️</div>
-    <div class="dl">Recycle Bin</div>
+    <div class="di-img">🗑️</div><div class="dl">Recycle Bin</div>
   </div>
-
-  <!-- HIDDEN PIXEL — easter egg trigger -->
   <div id="hidden-pixel" title="" ondblclick="openWin('corrupt-win')"></div>
 
-  <!-- ══ MAIN WINDOW ══════════════════════════════════════════ -->
+  <!-- MAIN WINDOW -->
   <div class="win glitch open" id="main-win" style="width:520px;top:40px;left:110px;z-index:10">
     <div class="titlebar" onmousedown="drag(event,'main-win')">
       <div class="tb-l"><div class="tb-ic">?</div> ROOM_24.exe</div>
@@ -166,38 +218,26 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'MS Sans Serif',Tah
         <div class="tbtn" onclick="openWin('quit-win')">✕</div>
       </div>
     </div>
-    <div class="mbar">
-      <div class="mi">File</div>
-      <div class="mi">Edit</div>
-      <div class="mi">View</div>
-      <div class="mi" onclick="openWin('readme-win')">Help</div>
-    </div>
+    <div class="mbar"><div class="mi">File</div><div class="mi">Edit</div><div class="mi">View</div><div class="mi" onclick="openWin('readme-win')">Help</div></div>
     <div class="wb" style="padding:10px;">
       <div class="crt-box" style="height:130px;">
         <div class="crt" id="crt-out"></div>
         <span class="crt blink" style="padding:0 8px 6px;display:block;">_</span>
       </div>
       <div style="margin-top:10px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;">
-        <div class="btn btn-def" onclick="openWin('dl-win')">💾 Download Game</div>
-        <div class="btn" onclick="openWin('readme-win')">📄 Read First</div>
-        <div class="btn" onclick="openWin('archive-win')">📁 Archive</div>
+        <div class="win95-btn def" onclick="openWin('dl-win')">💾 Download Game</div>
+        <div class="win95-btn" onclick="openWin('readme-win')">📄 Read First</div>
+        <div class="win95-btn" onclick="openWin('archive-win')">📁 Archive</div>
       </div>
     </div>
-    <div class="sbar">
-      <div class="sp" style="flex:2">Ready</div>
-      <div class="sp" style="flex:3">ROOM 24 — Horror Investigation — Unreal Engine 5</div>
-    </div>
+    <div class="sbar"><div class="sp" style="flex:2">Ready</div><div class="sp" style="flex:3">ROOM 24 — Horror Investigation — Unreal Engine 5</div></div>
   </div>
 
-  <!-- ══ README ═══════════════════════════════════════════════ -->
+  <!-- README WINDOW -->
   <div class="win" id="readme-win" style="width:380px;top:60px;left:160px;z-index:10">
     <div class="titlebar" onmousedown="drag(event,'readme-win')">
       <div class="tb-l"><div class="tb-ic">📝</div> README.txt — Notepad</div>
-      <div class="tb-btns">
-        <div class="tbtn" onclick="minWin('readme-win')">_</div>
-        <div class="tbtn">□</div>
-        <div class="tbtn" onclick="closeWin('readme-win')">✕</div>
-      </div>
+      <div class="tb-btns"><div class="tbtn" onclick="minWin('readme-win')">_</div><div class="tbtn">□</div><div class="tbtn" onclick="closeWin('readme-win')">✕</div></div>
     </div>
     <div class="mbar"><div class="mi">File</div><div class="mi">Edit</div><div class="mi">Format</div></div>
     <div class="inset" style="margin:0;">
@@ -234,15 +274,11 @@ DEPT OF CIVIL INVESTIGATIONS</textarea>
     <div class="sbar"><div class="sp" style="flex:1">Ln 1, Col 1</div></div>
   </div>
 
-  <!-- ══ ARCHIVE ═══════════════════════════════════════════════ -->
+  <!-- ARCHIVE WINDOW -->
   <div class="win" id="archive-win" style="width:430px;top:80px;left:140px;z-index:10">
     <div class="titlebar" onmousedown="drag(event,'archive-win')">
       <div class="tb-l"><div class="tb-ic">📁</div> Lab_Archive — Windows Explorer</div>
-      <div class="tb-btns">
-        <div class="tbtn" onclick="minWin('archive-win')">_</div>
-        <div class="tbtn">□</div>
-        <div class="tbtn" onclick="closeWin('archive-win')">✕</div>
-      </div>
+      <div class="tb-btns"><div class="tbtn" onclick="minWin('archive-win')">_</div><div class="tbtn">□</div><div class="tbtn" onclick="closeWin('archive-win')">✕</div></div>
     </div>
     <div class="mbar"><div class="mi">File</div><div class="mi">Edit</div><div class="mi">View</div></div>
     <div style="display:flex;align-items:center;gap:4px;padding:3px 4px;border-bottom:1px solid var(--dark);">
@@ -259,29 +295,19 @@ DEPT OF CIVIL INVESTIGATIONS</textarea>
       <div class="fr" style="opacity:.4;cursor:not-allowed;"><span>🔒</span><span style="flex:1;color:#888;">room24_access_[REDACTED].dat</span><span class="dim">— —</span></div>
       <div class="fr" style="opacity:.4;cursor:not-allowed;"><span>🔒</span><span style="flex:1;color:#888;">0x4A_sector_dump.bin</span><span class="dim">— —</span></div>
     </div>
-    <div class="sbar">
-      <div class="sp" style="flex:1">8 object(s) — 2 hidden</div>
-      <div class="sp" style="flex:1">??? MB free of ??? MB</div>
-    </div>
+    <div class="sbar"><div class="sp" style="flex:1">8 object(s) — 2 hidden</div><div class="sp" style="flex:1">??? MB free</div></div>
   </div>
 
-  <!-- ══ DOWNLOAD ══════════════════════════════════════════════ -->
+  <!-- DOWNLOAD WINDOW -->
   <div class="win" id="dl-win" style="width:380px;top:100px;left:160px;z-index:10">
     <div class="titlebar" onmousedown="drag(event,'dl-win')">
       <div class="tb-l"><div class="tb-ic">💾</div> Download</div>
-      <div class="tb-btns">
-        <div class="tbtn" onclick="minWin('dl-win')">_</div>
-        <div class="tbtn">□</div>
-        <div class="tbtn" onclick="closeWin('dl-win')">✕</div>
-      </div>
+      <div class="tb-btns"><div class="tbtn" onclick="minWin('dl-win')">_</div><div class="tbtn">□</div><div class="tbtn" onclick="closeWin('dl-win')">✕</div></div>
     </div>
     <div class="wb" style="padding:14px;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div style="font-size:36px;flex-shrink:0;">🔒</div>
-        <div>
-          <div style="font-weight:bold;font-size:12px;">ROOM_24_setup.exe</div>
-          <div style="color:#555;margin-top:2px;">Status: <span style="color:var(--red);font-weight:bold;">NOT YET RELEASED</span></div>
-        </div>
+        <div><div style="font-weight:bold;font-size:12px;">ROOM_24_setup.exe</div><div style="color:#555;margin-top:2px;">Status: <span style="color:var(--red);font-weight:bold;">NOT YET RELEASED</span></div></div>
       </div>
       <div class="hr"></div>
       <div class="crt-box" style="margin-bottom:10px;">
@@ -302,13 +328,13 @@ is closed.
       </div>
       <div class="hr"></div>
       <div style="display:flex;gap:6px;justify-content:center;">
-        <div class="btn btn-def" style="opacity:.4;cursor:not-allowed;">Download Now</div>
-        <div class="btn" onclick="closeWin('dl-win')">Close</div>
+        <div class="win95-btn def" style="opacity:.4;cursor:not-allowed;">Download Now</div>
+        <div class="win95-btn" onclick="closeWin('dl-win')">Close</div>
       </div>
     </div>
   </div>
 
-  <!-- ══ QUIT ══════════════════════════════════════════════════ -->
+  <!-- QUIT WINDOW -->
   <div class="win" id="quit-win" style="width:300px;top:160px;left:210px;z-index:10">
     <div class="titlebar" onmousedown="drag(event,'quit-win')">
       <div class="tb-l"><div class="tb-ic">⚠️</div> ROOM_24</div>
@@ -316,53 +342,171 @@ is closed.
     </div>
     <div class="wb" style="padding:16px;display:flex;align-items:flex-start;gap:12px;">
       <div style="font-size:32px;flex-shrink:0;line-height:1;">⚠️</div>
-      <div style="line-height:1.9;">
-        <strong style="font-size:12px;">You cannot leave.</strong><br>
-        You are already inside.<br>
-        <span style="color:#666;">The room is waiting for you.</span>
-      </div>
+      <div style="line-height:1.9;"><strong style="font-size:12px;">You cannot leave.</strong><br>You are already inside.<br><span style="color:#666;">The room is waiting for you.</span></div>
     </div>
     <div class="hr" style="margin:0 8px;"></div>
     <div style="padding:8px;display:flex;justify-content:center;gap:6px;">
-      <div class="btn btn-def" onclick="closeWin('quit-win')">Stay</div>
-      <div class="btn" onclick="closeWin('quit-win')">Stay</div>
+      <div class="win95-btn def" onclick="closeWin('quit-win')">Stay</div>
+      <div class="win95-btn" onclick="closeWin('quit-win')">Stay</div>
     </div>
   </div>
 
-  <!-- ══ CORRUPT EASTER EGG ════════════════════════════════════ -->
+  <!-- CORRUPT WINDOW -->
   <div class="win" id="corrupt-win" style="width:420px;top:80px;left:130px;z-index:100;">
-    <div class="titlebar" style="background:#000;" onmousedown="drag(event,'corrupt-win')">
+    <div class="titlebar" style="background:#000;cursor:move;" onmousedown="drag(event,'corrupt-win')">
       <div class="tb-l" style="color:#f00;font-family:'VT323',monospace;font-size:14px;">⚠ SECTOR 0x4A — READ ERROR</div>
       <div class="tb-btns"><div class="tbtn" onclick="closeWin('corrupt-win')">✕</div></div>
     </div>
     <div class="err-screen">
       <div class="err-title">A fatal error has occurred in sector 0x4A</div>
-      <p>...naked eyes aren't enough.<br>
-      The corridor seems empty, but there are footsteps.</p><br>
-      <p>Turn on the lens.<br>
-      Look through the screen.<br>
-      It's the only way to physically see him.</p><br>
+      <p>...naked eyes aren't enough.<br>The corridor seems empty, but there are footsteps.</p><br>
+      <p>Turn on the lens.<br>Look through the screen.<br>It's the only way to physically see him.</p><br>
       <p style="color:#ffff00;">[DATA CORRUPTED...]</p><br>
-      <p>If you focus on him, he freezes. Like stone.<br>
-      Don't lower your focus — if you lose eye contact,<br>
-      he'll jump on you.</p><br>
-      <p>He follows sounds. You can use machinery<br>
-      or alarms to make him move and clear the passage.</p><br>
+      <p>If you focus on him, he freezes. Like stone.<br>Don't lower your focus — if you lose eye contact,<br>he'll jump on you.</p><br>
+      <p>He follows sounds. You can use machinery<br>or alarms to make him move and clear the passage.</p><br>
       <p style="color:#ff4444;">[FATAL ERROR...]&nbsp;<strong>BUT YOU MUST STOP LOOKING AT HIM</strong>&nbsp;[...]</p><br>
-      <p>If you're looking at him, he stays frozen<br>
-      and will never move toward the noise.<br>
-      Turn on something. Turn to the wall.<br>
-      Listen to his receding footsteps.</p><br>
+      <p>If you're looking at him, he stays frozen<br>and will never move toward the noise.<br>Turn on something. Turn to the wall.<br>Listen to his receding footsteps.</p><br>
       <p style="color:#888;">Don't let yourself [SYSTEM OFFLINE]</p>
     </div>
     <div style="padding:8px;text-align:right;background:var(--face);border-top:1px solid var(--dark);">
-      <div class="btn btn-def" onclick="closeWin('corrupt-win')">OK</div>
+      <div class="win95-btn def" onclick="closeWin('corrupt-win')">OK</div>
     </div>
   </div>
 
-</div><!-- /desktop -->
+</div><!-- /desktop-view -->
 
-<!-- ══ TASKBAR ══════════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     MOBILE VIEW (< 600px)
+══════════════════════════════════════════ -->
+<div id="mobile-view">
+
+  <!-- Fake titlebar -->
+  <div class="mob-topbar">
+    <div class="mob-topbar-ico">
+      <svg width="16" height="16" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
+        <rect width="32" height="32" fill="#000"/>
+        <rect x="8" y="10" width="4" height="4" fill="#33ff33"/>
+        <rect x="9" y="11" width="2" height="2" fill="#000"/>
+        <rect x="20" y="10" width="4" height="4" fill="#33ff33"/>
+        <rect x="21" y="11" width="2" height="2" fill="#000"/>
+        <rect x="6" y="6" width="20" height="18" fill="none" stroke="#33ff33" stroke-width="1.5"/>
+        <rect x="10" y="20" width="12" height="1" fill="#33ff33"/>
+      </svg>
+    </div>
+    ROOM_24.exe
+    <span style="margin-left:auto;font-size:10px;font-weight:normal;opacity:.8;">v1.0 — CASE #1996-CIV-09</span>
+  </div>
+
+  <div class="mob-screen">
+    <!-- Tab bar -->
+    <div class="mob-menubar" id="mob-tabs">
+      <div class="mob-mi active-tab" onclick="mobTab('home')">Home</div>
+      <div class="mob-mi" onclick="mobTab('readme')">README.txt</div>
+      <div class="mob-mi" onclick="mobTab('archive')">Archive</div>
+      <div class="mob-mi" onclick="mobTab('download')">Download</div>
+    </div>
+
+    <div class="mob-panels">
+
+      <!-- HOME TAB -->
+      <div class="mob-panel active" id="mob-home">
+        <div class="mob-crt-box">
+          <div class="crt" id="mob-crt-out" style="font-size:14px;"></div>
+          <span class="crt blink" style="padding:0 8px 6px;display:block;font-family:'VT323',monospace;font-size:14px;color:#33ff33;">_</span>
+        </div>
+        <div style="padding:10px;display:flex;flex-direction:column;gap:8px;">
+          <div class="win95-btn def" style="width:100%;padding:8px;" onclick="mobTab('download')">💾 Download Game</div>
+          <div class="win95-btn" style="width:100%;padding:8px;" onclick="mobTab('readme')">📄 Read First</div>
+          <div class="win95-btn" style="width:100%;padding:8px;" onclick="mobTab('archive')">📁 Open Archive</div>
+        </div>
+        <div class="sbar" style="margin-top:auto;"><div class="sp" style="flex:1">Ready — ROOM 24 — Unreal Engine 5</div></div>
+      </div>
+
+      <!-- README TAB -->
+      <div class="mob-panel" id="mob-readme">
+        <div class="mob-section">
+          <div class="mob-section-title">📝 README.txt — Notepad</div>
+          <div class="mob-notepad">This is an official record.<br><br>
+A girl went missing.<br><br>
+The authorities found no answers.<br><br>
+Her videotapes still exist.<br><br>
+Look at what you see.<br>
+Listen to what you hear.<br>
+Do not trust what you cannot see.<br><br>
+<span style="color:#cc0000;font-weight:bold;">Do not open ROOM 24.</span><br><br>
+<br>
+— File created: ??/??/1996<br>
+— Last modified: never<br>
+— — — — — — — — — — — — —<br>
+CASE REF: #1996-CIV-09<br>
+DEPT OF CIVIL INVESTIGATIONS</div>
+        </div>
+      </div>
+
+      <!-- ARCHIVE TAB -->
+      <div class="mob-panel" id="mob-archive">
+        <div class="mob-section">
+          <div class="mob-section-title">📁 Lab_Archive — C:\Lab_Archive\</div>
+          <div>
+            <div class="mob-fr" onclick="go('dossier.html')"><span>📄</span><span style="flex:1">employee_dossier_RESTR04.doc</span><span class="mob-dim">18 KB</span></div>
+            <div class="mob-fr" onclick="go('site4.html')"><span>📄</span><span style="flex:1">site4_anomalies_MAY1996.doc</span><span class="mob-dim">22 KB</span></div>
+            <div class="mob-fr" onclick="go('evidence.html')"><span>📄</span><span style="flex:1">evidence_log_CIV09.doc</span><span class="mob-dim">15 KB</span></div>
+            <div class="mob-fr"><span>🎬</span><span style="flex:1">VHS_001_█████.avi</span><span class="mob-dim">???</span></div>
+            <div class="mob-fr"><span>🎬</span><span style="flex:1">VHS_002_█████.avi</span><span class="mob-dim">???</span></div>
+            <div class="mob-fr"><span>🎬</span><span style="flex:1">VHS_003_█████.avi</span><span class="mob-dim">???</span></div>
+            <div class="mob-fr" style="opacity:.4;"><span>🔒</span><span style="flex:1;color:#888;">room24_access_[REDACTED].dat</span><span class="mob-dim">— —</span></div>
+            <div class="mob-fr" style="opacity:.4;"><span>🔒</span><span style="flex:1;color:#888;">0x4A_sector_dump.bin</span><span class="mob-dim">— —</span></div>
+          </div>
+        </div>
+        <div style="padding:6px 8px;font-size:10px;color:#555;">8 object(s) — 2 hidden — ??? MB free</div>
+      </div>
+
+      <!-- DOWNLOAD TAB -->
+      <div class="mob-panel" id="mob-download">
+        <div class="mob-section">
+          <div class="mob-section-title">💾 Download</div>
+          <div style="padding:12px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+              <div style="font-size:36px;flex-shrink:0;">🔒</div>
+              <div><div style="font-weight:bold;font-size:13px;">ROOM_24_setup.exe</div><div style="margin-top:2px;font-size:12px;">Status: <span style="color:var(--red);font-weight:bold;">NOT YET RELEASED</span></div></div>
+            </div>
+            <div class="hr"></div>
+            <div class="mob-crt-box" style="margin:0 0 10px;">
+              <div class="crt" style="font-size:14px;padding:10px;line-height:1.7;">ACCESS DENIED.
+
+ROOM_24_setup.exe is not
+available for download.
+
+The investigation is still open.
+Carla has not been found.
+
+Come back when the case
+is closed.
+
+// RELEASE: COMING SOON</div>
+            </div>
+            <div class="hr"></div>
+            <div style="display:flex;gap:6px;justify-content:center;">
+              <div class="win95-btn def" style="opacity:.4;cursor:not-allowed;padding:6px 20px;">Download Now</div>
+              <div class="win95-btn" style="padding:6px 20px;" onclick="mobTab('home')">Close</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /mob-panels -->
+  </div><!-- /mob-screen -->
+
+  <!-- Mobile taskbar -->
+  <div class="mob-taskbar">
+    <div class="mob-start" onclick="mobTab('home')">⊞ Start</div>
+    <div style="border-top:1px solid var(--dark);border-left:1px solid var(--dark);border-right:1px solid var(--light);border-bottom:1px solid var(--light);padding:2px 8px;font-size:11px;flex:1;margin:0 4px;">ROOM_24.exe</div>
+    <div class="mob-clock" id="mob-clock">00:00</div>
+  </div>
+
+</div><!-- /mobile-view -->
+
+<!-- ══ DESKTOP TASKBAR ══ -->
 <div id="taskbar">
   <button id="start-btn" onclick="toggleStart()">⊞ Start</button>
   <div class="tb-sep"></div>
@@ -370,11 +514,11 @@ is closed.
   <div id="clock-panel">00:00</div>
 </div>
 
-<!-- START MENU -->
+<!-- START MENU (desktop only) -->
 <div id="smenu">
   <div style="display:flex;height:100%;min-height:180px;">
     <div class="sm-strip">Windows 95</div>
-    <div class="sm-items">
+    <div style="flex:1;">
       <div class="mi" style="padding:5px 8px;" onclick="openWin('main-win');closeStart()">? ROOM_24.exe</div>
       <div class="mi" style="padding:5px 8px;" onclick="openWin('readme-win');closeStart()">📝 README.txt</div>
       <div class="mi" style="padding:5px 8px;" onclick="openWin('archive-win');closeStart()">📁 Lab Archive</div>
@@ -387,18 +531,31 @@ is closed.
 
 <script>
 /* ── CLOCK ── */
-function tick(){const n=new Date();document.getElementById('clock-panel').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');}
+function tick(){
+  const t=String(new Date().getHours()).padStart(2,'0')+':'+String(new Date().getMinutes()).padStart(2,'0');
+  const c=document.getElementById('clock-panel');const m=document.getElementById('mob-clock');
+  if(c)c.textContent=t; if(m)m.textContent=t;
+}
 tick();setInterval(tick,10000);
 
-/* ── ICON SELECT ── */
+/* ── MOBILE TABS ── */
+function mobTab(name){
+  document.querySelectorAll('.mob-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.mob-mi').forEach(t=>t.classList.remove('active-tab'));
+  document.getElementById('mob-'+name).classList.add('active');
+  const tabs=['home','readme','archive','download'];
+  const idx=tabs.indexOf(name);
+  document.querySelectorAll('.mob-mi')[idx].classList.add('active-tab');
+}
+
+/* ── DESKTOP: ICON SELECT ── */
 function selIcon(el){document.querySelectorAll('.di').forEach(i=>i.classList.remove('sel'));el.classList.add('sel');}
 function desktopClick(e){if(!e.target.closest('.di')&&!e.target.closest('.win'))document.querySelectorAll('.di').forEach(i=>i.classList.remove('sel'));}
 
-/* ── WINDOW MANAGEMENT ── */
+/* ── DESKTOP: WINDOW MANAGEMENT ── */
 let zTop=10;
 const tasks={};
 const taskNames={'main-win':'? ROOM_24.exe','readme-win':'📝 README.txt','archive-win':'📁 Lab_Archive','dl-win':'💾 Download','quit-win':'⚠ ROOM_24','corrupt-win':'⚠ 0x4A ERROR'};
-
 function openWin(id){const w=document.getElementById(id);w.classList.add('open');w.style.zIndex=++zTop;addTask(id);}
 function closeWin(id){document.getElementById(id).classList.remove('open');removeTask(id);}
 function minWin(id){document.getElementById(id).classList.remove('open');}
@@ -407,7 +564,7 @@ function addTask(id){if(tasks[id])return;const c=document.getElementById('tb-tas
 function removeTask(id){if(tasks[id]){tasks[id].remove();delete tasks[id];}}
 addTask('main-win');
 
-/* ── START ── */
+/* ── START MENU ── */
 function toggleStart(){const m=document.getElementById('smenu');m.style.display=m.style.display==='none'?'block':'none';}
 function closeStart(){document.getElementById('smenu').style.display='none';}
 document.addEventListener('click',e=>{if(!e.target.closest('#start-btn')&&!e.target.closest('#smenu'))closeStart();});
@@ -422,7 +579,7 @@ function drag(e,id){
   document.addEventListener('mousemove',mv);document.addEventListener('mouseup',up);
 }
 
-/* ── CRT TYPEWRITER ── */
+/* ── CRT TYPEWRITER (runs on whichever element is visible) ── */
 const lines=[
   'C:\\ROOM24> initializing system...',
   'loading archive...          [OK]',
@@ -441,16 +598,18 @@ const lines=[
   '> Find what they left behind.'
 ];
 let li=0,ci=0;
-const out=document.getElementById('crt-out');
+function getOut(){return document.getElementById(window.innerWidth<600?'mob-crt-out':'crt-out');}
 function type(){
   if(li>=lines.length)return;
+  const out=getOut();
+  if(!out){setTimeout(type,200);return;}
   if(ci<lines[li].length){out.textContent+=(li>0&&ci===0?'\n':'')+lines[li][ci++];setTimeout(type,lines[li][ci-1]===' '?22:36);}
   else{li++;ci=0;setTimeout(type,lines[li-1]===''?50:160);}
 }
 setTimeout(type,600);
 
 /* ── NAV ── */
-function go(page){window.open(page,'_blank');}
+function go(page){window.location.href=page;}
 </script>
 </body>
 </html>
