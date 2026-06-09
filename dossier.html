@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EMPLOYEE DOSSIER // RESTR-04</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#1a1a0e;color:#c8c0a0;font-family:'Courier New',monospace;font-size:12px;padding:0;cursor:default;}
+
+.page{max-width:720px;margin:0 auto;padding:30px 24px;position:relative;}
+
+/* SCAN OVERLAY */
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(transparent,transparent 3px,rgba(0,0,0,0.08) 3px,rgba(0,0,0,0.08) 4px);pointer-events:none;z-index:999;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,0.7) 100%);pointer-events:none;z-index:998;}
+
+/* PAPER EFFECT */
+.doc{background:#f0ead8;color:#1a1a0e;padding:40px 48px;position:relative;box-shadow:0 0 40px rgba(0,0,0,0.8), inset 0 0 60px rgba(0,0,0,0.05);border:1px solid #c8ba98;}
+.doc::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23f0ead8'/%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(0,0,0,0.03)'/%3E%3C/svg%3E");pointer-events:none;}
+
+.stamp-secret{position:absolute;top:36px;right:40px;border:3px solid #8b0000;color:#8b0000;padding:4px 10px;font-family:'Special Elite',serif;font-size:22px;letter-spacing:4px;transform:rotate(15deg);opacity:0.85;text-transform:uppercase;}
+
+.doc-header{text-align:center;border-bottom:2px solid #1a1a0e;padding-bottom:16px;margin-bottom:20px;}
+.doc-title{font-family:'Special Elite',serif;font-size:14px;letter-spacing:2px;line-height:1.8;text-transform:uppercase;}
+.doc-case{font-size:11px;margin-top:8px;letter-spacing:1px;}
+
+.section-title{font-family:'Special Elite',serif;font-size:13px;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #1a1a0e;padding-bottom:4px;margin:20px 0 10px;}
+
+p{line-height:1.8;margin-bottom:8px;font-size:12px;}
+ul{margin:6px 0 8px 16px;}
+li{line-height:1.8;font-size:12px;}
+
+.redact{background:#1a1a0e;color:#1a1a0e;padding:0 2px;cursor:default;user-select:none;}
+.redact:hover{background:#8b0000;color:#8b0000;}
+
+.field-row{display:flex;gap:8px;margin-bottom:6px;font-size:12px;}
+.field-label{font-weight:bold;min-width:120px;flex-shrink:0;}
+.field-val{flex:1;border-bottom:1px solid #888;}
+
+.note-box{border:1px solid #888;padding:10px 14px;margin:12px 0;background:rgba(0,0,0,0.04);font-style:italic;font-size:11px;}
+
+.footer-stamp{margin-top:30px;border-top:1px solid #888;padding-top:12px;font-size:10px;color:#555;display:flex;justify-content:space-between;}
+
+/* TOP NAV */
+.topbar{background:#1a1a0e;padding:6px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #333;font-family:'Courier New',monospace;font-size:11px;color:#888;}
+.topbar a{color:#a0c080;text-decoration:none;}
+.topbar a:hover{color:#33ff33;}
+
+/* GLITCH HEADER */
+.glitch-title{font-family:'VT323',monospace;font-size:13px;color:#33ff33;background:#1a1a0e;padding:4px 8px;letter-spacing:2px;display:inline-block;margin-bottom:6px;animation:hdrg 8s infinite;}
+@keyframes hdrg{0%,90%,100%{filter:none;transform:none;}91%{filter:hue-rotate(90deg);transform:translateX(-1px);}92%{filter:none;transform:none;}}
+
+.photo-box{width:90px;height:110px;border:1px solid #888;background:#d0c8b0;float:right;margin:0 0 10px 16px;display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:10px;color:#555;text-align:center;}
+.photo-box::after{content:'PHOTO\ACLASSIFIED';white-space:pre;font-size:9px;color:#8b0000;}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html">← Back to desktop</a>
+  <span style="margin-left:auto;">C:\Lab_Archive\employee_dossier_RESTR04.doc</span>
+</div>
+<div class="page">
+  <div class="glitch-title">// DEPT. CIVIL INVESTIGATIONS — INTERNAL DOCUMENT VIEWER v2.1 //</div>
+  <div class="doc">
+    <div class="stamp-secret">RESTRICTED</div>
+
+    <div class="doc-header">
+      <div class="doc-title">
+        EMPLOYEE DOSSIER // RESTR-04<br>
+        DEPARTMENT OF CIVIL INVESTIGATIONS &amp; MISSING PERSONS<br>
+        CASE FILE REFERRAL: #1996-CIV-09
+      </div>
+      <div class="doc-case">
+        SUBJECT: EXUM, BILLY &nbsp;|&nbsp; RANK: SENIOR FIELD INVESTIGATOR (CLASS-II)<br>
+        ASSIGNMENT: REGIONAL SEARCH &amp; RECOVERY // SECTOR B (SITE-4)
+      </div>
+    </div>
+
+    <div class="photo-box"></div>
+
+    <div class="section-title">1. Background Summary</div>
+    <p>Investigator Billy Exum has been with the department since 1988, specializing in prolonged missing person cases and industrial trespass tracking. Known for a clinical, highly analytical approach to field evidence.</p>
+    <p>He requested a direct transfer to the Site-4 missing person case (Subject: <span class="redact">Carla Ovidi</span>) within <strong>24 hours</strong> of the initial local police file opening. No previous official connection to the missing civilian is documented in his personnel archive, though unusual persistence regarding the assignment has been noted by oversight.</p>
+
+    <div class="section-title">2. Physical &amp; Psychological Profile</div>
+    <div class="field-row"><span class="field-label">Status:</span><span class="field-val">Active / Fully Cleared for Solo Field Duty</span></div>
+    <div class="field-row"><span class="field-label">Clearance:</span><span class="field-val">CLASS-II FIELD</span></div>
+    <div class="field-row"><span class="field-label">Years Active:</span><span class="field-val">1988 – present (8 years)</span></div>
+
+    <div class="note-box">
+      <strong>Evaluation Note (April 1996):</strong> Subject displays high cognitive resilience under isolation but exhibits minor signs of chronic sleep deprivation. He has expressed a growing fixation on unverified "auditory anomalies" in previous cold cases.
+    </div>
+    <p><strong>Command Advisory:</strong> Due to his tendency to ignore standard extraction protocols when pursuing a lead, communication checks are scheduled every <strong>60 minutes</strong>.</p>
+
+    <div class="section-title">3. Current Equipment &amp; Mission Objectives</div>
+    <ul>
+      <li>Standard high-intensity halogen flashlight</li>
+      <li>Internal department radio receiver <strong>(Freq: 144.8 MHz)</strong></li>
+      <li>Regional municipal blueprints (Unrevised)</li>
+    </ul>
+    <p><strong>Primary Objective:</strong> Establish entry into Sector B, locate the point of interest <strong>(Room 24)</strong>, and recover any personal data storage devices or physical items belonging to <span class="redact">Carla [REDACTED]</span>.</p>
+
+    <div class="note-box" style="border-color:#8b0000;background:rgba(139,0,0,0.04);">
+      <strong style="color:#8b0000;">RECENT LOGGING:</strong> Investigator Exum has refused the assistance of a backup unit, citing that <em>"additional radio frequencies would distort the acoustic baseline"</em> of the facility.
+    </div>
+
+    <div class="footer-stamp">
+      <span>DEPT. CIVIL INVESTIGATIONS &amp; MISSING PERSONS // INTERNAL USE ONLY</span>
+      <span>MAY 1996 — FILE: RESTR-04</span>
+    </div>
+
+    <p style="margin-top:16px;font-size:10px;color:#888;font-style:italic;">* Hover over redacted fields to reveal nothing. Some things stay hidden for a reason.</p>
+  </div>
+</div>
+</body>
+</html>

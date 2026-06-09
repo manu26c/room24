@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SITE-4 ANOMALIES — MAY 1996</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0a0a0a;color:#c8c0a0;font-family:'Courier New',monospace;font-size:12px;cursor:default;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(transparent,transparent 3px,rgba(0,0,0,0.1) 3px,rgba(0,0,0,0.1) 4px);pointer-events:none;z-index:999;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.8) 100%);pointer-events:none;z-index:998;}
+
+.topbar{background:#0d0d0d;padding:6px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #222;font-size:11px;color:#666;}
+.topbar a{color:#a0c080;text-decoration:none;}
+.topbar a:hover{color:#33ff33;}
+
+.page{max-width:720px;margin:0 auto;padding:30px 24px;}
+.doc{background:#f0ead8;color:#1a1a0e;padding:40px 48px;box-shadow:0 0 60px rgba(0,0,0,0.9),inset 0 0 60px rgba(0,0,0,0.04);border:1px solid #c8ba98;position:relative;}
+
+.stamp{position:absolute;top:36px;right:40px;border:3px solid #8b4500;color:#8b4500;padding:4px 10px;font-family:'Special Elite',serif;font-size:20px;letter-spacing:3px;transform:rotate(-12deg);opacity:0.8;text-transform:uppercase;}
+
+.doc-header{text-align:center;border-bottom:2px solid #1a1a0e;padding-bottom:16px;margin-bottom:20px;font-family:'Special Elite',serif;}
+.doc-title{font-size:13px;letter-spacing:2px;line-height:1.9;text-transform:uppercase;}
+
+.section-title{font-family:'Special Elite',serif;font-size:13px;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #888;padding-bottom:4px;margin:22px 0 10px;color:#1a1a0e;}
+
+p{line-height:1.85;margin-bottom:8px;font-size:12px;}
+ul{margin:6px 0 10px 16px;}
+li{line-height:1.85;font-size:12px;margin-bottom:4px;}
+
+.note-box{border:1px solid #888;padding:10px 14px;margin:12px 0;background:rgba(0,0,0,0.04);font-size:11px;}
+.alert-box{border:2px solid #8b0000;padding:10px 14px;margin:12px 0;background:rgba(139,0,0,0.06);font-size:11px;color:#8b0000;}
+.warn-box{border:1px solid #8b4500;padding:10px 14px;margin:12px 0;background:rgba(139,69,0,0.05);font-size:11px;color:#5a2e00;}
+
+.redact{background:#1a1a0e;color:#1a1a0e;padding:0 2px;user-select:none;}
+
+/* MORSE HIDDEN IN PAGE - viewers who inspect source find it */
+/* .-- .... . .-. . / .. ... / ... .... . */
+/* WHERE IS SHE */
+
+.footer-stamp{margin-top:30px;border-top:1px solid #888;padding-top:12px;font-size:10px;color:#555;display:flex;justify-content:space-between;}
+
+.glitch-hdr{font-family:'VT323',monospace;font-size:13px;color:#33ff33;background:#0a0a0a;padding:4px 8px;letter-spacing:2px;display:inline-block;margin-bottom:6px;animation:hg 10s infinite;}
+@keyframes hg{0%,88%,100%{filter:none;}89%{filter:hue-rotate(90deg) brightness(1.5);}90%{filter:none;}}
+
+/* hidden flicker on load */
+.flicker{animation:flk 0.1s steps(1) 3;}
+@keyframes flk{0%,100%{opacity:1;}50%{opacity:0;}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html">← Back to desktop</a>
+  <span style="margin-left:auto;">C:\Lab_Archive\site4_anomalies_MAY1996.doc</span>
+</div>
+<div class="page">
+  <div class="glitch-hdr">// DEPT. CIVIL INVESTIGATIONS — INTERNAL DOCUMENT VIEWER v2.1 //</div>
+  <div class="doc flicker">
+    <div class="stamp">INTERNAL ONLY</div>
+
+    <div class="doc-header">
+      <div class="doc-title">
+        SITE-4 LOGISTICS &amp; MAINTENANCE<br>
+        DATE: MAY 1996 &nbsp;|&nbsp; STATUS: INTERNAL ONLY<br>
+        SUBJECT: UNRESOLVED ANOMALIES — SECTOR B
+      </div>
+    </div>
+
+    <div class="section-title">1. Architectural Discrepancies</div>
+    <p>A routine survey reveals that physical corridor lengths <strong>do not match</strong> the official blueprints filed in city archives. Transit times between subterranean rooms are <strong>40% longer than mapped</strong>. Tech teams report a <em>"spatial expansion effect."</em></p>
+    <ul>
+      <li>Corridor B-7 measures 34m on-site vs. 24m on record.</li>
+      <li>Sub-level 1 north wing: no mapped equivalent found.</li>
+      <li>Stairwell access to <span class="redact">[REDACTED SUBLEVEL]</span> has been sealed — origin of seal unknown.</li>
+    </ul>
+    <div class="note-box">
+      <strong>NOTE:</strong> A civilian (Carla Ovidi) went missing in this sector on <strong>Tuesday</strong>. Camera loop <strong>3B</strong> went dark exactly during the layout shift. Duration of blackout: <strong>unknown</strong>. Time of recovery: <strong>unknown</strong>.
+    </div>
+
+    <div class="section-title">2. Room 24 Specifications</div>
+    <p>The access door to Room 24 remains <strong>mechanically sealed</strong>. Despite zero power routing to this wing, the surrounding floor tiles exhibit persistent <strong>micro-vibrations</strong> and a constant temperature drop <strong>(–4°C)</strong>.</p>
+    <ul>
+      <li>No personnel have entered Room 24 since <span class="redact">██/██/19██</span>.</li>
+      <li>Security patrols report a <em>rhythmic metallic clicking</em> from the interior.</li>
+      <li>True contents of the room remain <strong>unverified by current staff</strong>.</li>
+    </ul>
+    <div class="alert-box">
+      <strong>⚠ ALERT:</strong> Two (2) maintenance workers assigned to inspect the door perimeter have reported disorientation and partial memory loss following shifts in Sector B. Both have been placed on administrative leave pending psychological evaluation.
+    </div>
+
+    <div class="section-title">3. Reactionary Frequencies — "The Echo"</div>
+    <p>Acoustic monitoring has logged repetitive audio reflections in the ventilation ducts (resembling dragging sounds and low murmurs). These are officially classified as <em>trapped residual noise</em>.</p>
+    <p>However, field reports note these sounds <strong>actively alter their pitch and direction</strong> when a flashlight or radio frequency enters the corridor — suggesting a form of <em>localized reaction</em>.</p>
+
+    <div class="warn-box">
+      <strong>⚠ TECH ADVISORY:</strong> VHS tapes recorded on-site create severe visual distortion on local CRT monitors. Playback authorized ONLY via isolated terminal screens. <strong>Do not freeze frames.</strong>
+    </div>
+
+    <div class="note-box" style="margin-top:20px;">
+      <strong>FREQ. LOG — 144.8 MHz (SECTOR B, 03:14):</strong><br>
+      <em style="font-size:11px;letter-spacing:1px;">— — · — &nbsp; · · — · &nbsp; · — · &nbsp; · — · &nbsp; — — — &nbsp; — — &nbsp; &nbsp; — · — — &nbsp; — — — &nbsp; — · — &nbsp; · — — &nbsp; · · — · &nbsp; · — · &nbsp; — — — &nbsp; — — &nbsp;</em><br>
+      <span style="font-size:10px;color:#888;">(signal origin: unknown — transcription unverified)</span>
+    </div>
+
+    <div class="footer-stamp">
+      <span>SITE-4 LOGISTICS &amp; MAINTENANCE // INTERNAL USE ONLY</span>
+      <span>MAY 1996</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
